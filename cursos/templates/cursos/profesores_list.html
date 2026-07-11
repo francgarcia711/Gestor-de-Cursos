@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} Lista de Profesores {% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Lista de Profesores</h1>
+    <div class="text-end mb-4"> 
+        <a class="btn btn-dark" href="{% url 'cursos:profesorFormulario' %}">Agregar Profesor</a>
+    </div>
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-6 col-lg-5">
+            <form action="{% url 'cursos:buscar_profesor' %}" method="GET" class="d-flex shadow-sm">
+                <input class="form-control me-2" type="text" name="query" placeholder="Buscar por apellido..." required>
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        {% for profesor in profesores %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        {{ profesor.apellido }} {{ profesor.nombre }}
+                    </h5>
+                    <p class="card-text mb-1">
+                        <strong>Email:</strong> {{ profesor.email }}
+                    </p>
+                    <p class="card-text">
+                        <strong>Profesión:</strong> {{ profesor.profesion }}
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'cursos:profesorEditar' profesor.id %}" class="btn btn-warning btn-sm me-2">Editar</a>
+                    <a href="{% url 'cursos:profesorEliminar' profesor.id %}" 
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Seguro que deseas eliminar a {{ profesor.nombre }} {{ profesor.apellido }}?')">
+                        Eliminar
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center">No hay profesores registrados.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

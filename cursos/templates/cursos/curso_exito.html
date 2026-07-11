@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center mt-4">
+    <h1 class="mb-4">Curso Agregado Exitosamente</h1>
+    <p>✅ El curso ha sido agregado correctamente.</p>
+    <a href="{% url 'cursos:cursoFormulario' %}" class="btn btn-primary mt-3">Agregar Otro Curso</a>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} Agregar Profesor {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Agregar Profesor</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="{% url 'cursos:profesorFormulario' %}" method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Mostrar errores generales -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Campos con Bootstrap -->
+                        <div class="mb-3">
+                            <label for="id_nombre" class="form-label">Nombre</label>
+                            {{ form.nombre|add_class:"form-control" }}
+                            {{ form.nombre.errors }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_apellido" class="form-label">Apellido</label>
+                            {{ form.apellido|add_class:"form-control" }}
+                            {{ form.apellido.errors }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Correo Electrónico</label>
+                            {{ form.email|add_class:"form-control" }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_profesion" class="form-label">Profesión</label>
+                            {{ form.profesion|add_class:"form-control" }}
+                            {{ form.profesion.errors }}
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

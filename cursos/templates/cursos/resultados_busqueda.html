@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Resultados de Búsqueda {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Resultados para la camada: <span class="text-primary">{{ camada }}</span></h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <ul class="list-group shadow-sm">
+                {% for curso in cursos %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>{{ curso.nombre }}</strong>
+                        <span class="badge bg-primary rounded-pill">Camada {{ curso.camada }}</span>
+                    </li>
+                {% empty %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        No se encontraron cursos que coincidan con la camada ingresada.
+                    </div>
+                {% endfor %}
+            </ul>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'cursos:cursos' %}" class="btn btn-secondary">Volver a Cursos</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %} Inicio - Tepy {% endblock %}
+
+{% block content %}
+<!-- 1. CARRUSEL DE IMÁGENES -->
+<div id="carruselInicio" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
+    <div class="carousel-inner rounded">
+        <!-- Imagen 1 -->
+        <div class="carousel-item active">
+            <!-- Más adelante podrías cambiar este link por una foto del Puente General Belgrano -->
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&h=400&fit=crop" class="d-block w-100" alt="Programación">
+            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                <h5>Bienvenido a tu Gestor de Cursos</h5>
+                <p>Tu plataforma integral de gestión.</p>
+            </div>
+        </div>
+        <!-- Imagen 2 -->
+        <div class="carousel-item">
+            <!-- Acá podrías lucir el diseño de tu logo del Yaguareté -->
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&h=400&fit=crop" class="d-block w-100" alt="Gestor">
+            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                <h5>Control Total</h5>
+                <p>Administra cursos, profesores y entregables desde un solo lugar.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Controles del Carrusel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carruselInicio" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carruselInicio" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+
+<!-- 2. BUSCADOR CENTRAL -->
+<div class="container text-center mb-5 mt-5">
+    <h2 class="mb-4">¿Qué curso estás buscando hoy?</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="{% url 'cursos:buscar' %}" method="GET" class="d-flex shadow-sm">
+                <input class="form-control form-control-lg me-2" type="number" name="camada" placeholder="Ingresá el número de camada..." required>
+                <button class="btn btn-primary btn-lg" type="submit">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 3. FOOTER (PIE DE PÁGINA) CON INFORMACIÓN DE CONTACTO -->
+<footer class="bg-dark text-light text-center py-4 mt-5 rounded shadow">
+    <div class="container">
+        <h5 class="mb-3 text-uppercase text-primary font-weight-bold">Información de Contacto</h5>
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-4">
+                <p class="mb-1"><i class="bi bi-geo-alt-fill text-danger"></i> Corrientes Capital, Argentina</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-1"><i class="bi bi-telephone-fill text-success"></i> Tel: +54 379 400-0000</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-1"><i class="bi bi-envelope-fill text-warning"></i> Email: francogarcia711@gmail.com</p>
+            </div>
+        </div>
+        <hr class="text-secondary">
+        <p class="mb-0 text-muted small">&copy; 2026 Franco Garcia - Proyecto Gestor de Cursos. Todos los derechos reservados.</p>
+    </div>
+</footer>
+{% endblock %}

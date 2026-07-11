@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Resultados de Búsqueda {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Resultados para el apellido: <span class="text-primary">{{ query }}</span></h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <ul class="list-group shadow-sm">
+                {% for profesor in profesores %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ profesor.apellido }} {{ profesor.nombre }}</strong>
+                            <br>
+                            <small class="text-muted">{{ profesor.profesion }} | {{ profesor.email }}</small>
+                        </div>
+                    </li>
+                {% empty %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        No se encontraron profesores con ese apellido.
+                    </div>
+                {% endfor %}
+            </ul>
+            
+            <div class="text-center mt-4">
+                <!-- Atención acá: asegúrate de que 'lista_profesores' sea el nombre correcto de tu URL -->
+                <a href="{% url 'cursos:lista_profesores' %}" class="btn btn-secondary">Volver a Profesores</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

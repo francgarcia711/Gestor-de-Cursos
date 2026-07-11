@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Estudiantes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Lista de Estudiantes</h1>
+    <ul class="list-group mt-3">
+        {% for estudiante in estudiantes %}
+            <li class="list-group-item">
+                <a href="{% url 'cursos:detalle_estudiante' estudiante.pk %}">
+                    <strong>{{ estudiante.nombre }} {{ estudiante.apellido }}</strong>
+                </a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay estudiantes registrados todavía.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
